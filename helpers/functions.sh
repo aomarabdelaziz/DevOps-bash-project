@@ -49,3 +49,46 @@ function mainMenu(){
 		*) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 	esac
 }
+
+function setOutputColorCyan() {
+  echo -e "${Cyan}"
+}
+
+function setOutputColorRed() {
+  echo -e "${RED}"
+}
+
+
+function setOutputColorBlue() {
+  echo -e "${Blue}"
+}
+
+function setOutputColorYellow() {
+  echo -e "${Yellow}"
+}
+
+function setOutputColorGreen() {
+  echo -e "${Green}"
+}
+
+function resetColor() {
+  echo -e "${ResetColor}"
+}
+
+function isDatabaseExist()
+{
+  if [ -d ./Database/$1 ]
+  then
+    # 0 = true
+    return 0 
+  else
+    # 1 = false
+    return 1
+  fi
+  
+}
+
+
+function createDatabase() {
+  mkdir ./Database/$1
+}
