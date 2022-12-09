@@ -15,21 +15,6 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ```
 
 ## Contributors
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Image</th>
-  </tr>
-  <tr>
-     <td>
-      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width="300" height="300"></img>
-    </td>
-   <td>Nyakundi</td>
-  </tr>
-  <tr>
-    <td>
-      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width="300" height="300"></img>
-    </td>
-    <td>Mak</td>
-  </tr>
-</table>
+<a href="https://github.com/OWNER/REPO/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=https://github.com/aomarabdelaziz/DevOps-bash-project" />
+</a>
