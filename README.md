@@ -1,7 +1,7 @@
 <h1 align="center"> Bash Project </h1>
 
 ![100%](https://progress-bar.dev/100/?title=Done)
-
+![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
 ## Project Description   :  
 <p align="center">
