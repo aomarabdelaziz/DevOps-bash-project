@@ -10,20 +10,9 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 
 ## To run this project  :   
 
-```
+```bash
 ./main.sh
 ```
-
-<p align="center">
-<img src="" >  
-</p>
-<p align="center">
-<img src="" >  
-</p>
-<p align="center">
-<img src="" >  
-</p>
-
 
 ## Contributors
 <table>
