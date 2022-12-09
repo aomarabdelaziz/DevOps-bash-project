@@ -17,22 +17,19 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ## Contributors
 <table>
   <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email Address</th>
+    <th>Name</th>
+    <th>Image</th>
   </tr>
   <tr>
      <td>
-      <img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
+      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width=50 height=50></img>
     </td>
    <td>Nyakundi</td>
-   <td>tables@mail.com</td>
   </tr>
   <tr>
     <td>
       <img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
     </td>
     <td>Mak</td>
-    <td>developer@mail.com</td>
   </tr>
 </table>
