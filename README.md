@@ -1,9 +1,7 @@
 <h1 align="center"> Bash Project </h1>
 
-<p align="center">
 ![100%](https://progress-bar.dev/100/?title=Done)
 
-</p>
 
 ## Project Description   :  
 <p align="center">
