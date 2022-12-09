@@ -1,6 +1,10 @@
 #! /bin/bash
 
+# using sourcing
 . ./helpers/functions.sh
 
-drawLogo
+# Draw Our Logo (DevOps DBMS)
+drawLogo 
+
+# show our main menu
 mainMenu
