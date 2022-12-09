@@ -15,7 +15,7 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ```
 
 ## Contributors
-<table border="3" align="center">
+<table border="2" align="center">
   <tr>
     <th>Name</th>
     <th>Address</th>
@@ -30,6 +30,6 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
   <tr>
     <td>John Doe</td>
     <td>United States</td>
-    <td height=100 width=100><img src="https://avatars.githubusercontent.com/u/99130650?v=4"></img></td>
+    <td><img src="https://avatars.githubusercontent.com/u/99130650?v=4"></img></td>
  </tr>
 </table>
