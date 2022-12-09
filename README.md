@@ -22,13 +22,13 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
   </tr>
   <tr>
      <td>
-      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width=50 height=50></img>
+      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width="300" height="300"></img>
     </td>
    <td>Nyakundi</td>
   </tr>
   <tr>
     <td>
-      <img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
+      <img src="https://avatars.githubusercontent.com/u/61574114?v=4" width="300" height="300"></img>
     </td>
     <td>Mak</td>
   </tr>
