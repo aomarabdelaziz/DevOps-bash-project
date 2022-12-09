@@ -15,18 +15,24 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ```
 
 ## Contributors
-<table border="1" align="center">
+<table>
   <tr>
-    <th>Name</th>
-    <th>Image</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email Address</th>
   </tr>
   <tr>
-    <td><a href="https://github.com/aomarabdelaziz">Abdelaiz Omar</a></td>
-    <td><img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
-</td>
+     <td>
+      <img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
+    </td>
+   <td>Nyakundi</td>
+   <td>tables@mail.com</td>
   </tr>
   <tr>
-    <td><a href="https://github.com/aomarabdelaziz">Abdelaiz Omar</a></td>
-    <td><img src="https://avatars.githubusercontent.com/u/99130650?v=4"></img></td>
- </tr>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
+    </td>
+    <td>Mak</td>
+    <td>developer@mail.com</td>
+  </tr>
 </table>
