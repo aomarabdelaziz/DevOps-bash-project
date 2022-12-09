@@ -24,11 +24,12 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
   <tr>
     <td>Jack Austin</td>
     <td>France</td>
-    <td><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="" height=100 width=100 /></td>
+    <td><img src="https://avatars.githubusercontent.com/u/61574114?v=4"></img>
+</td>
   </tr>
   <tr>
     <td>John Doe</td>
     <td>United States</td>
-    <td height=100 width=100><img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg" alt="" height=100 width=100 /></td>
-  </tr>
+    <td height=100 width=100><img src="https://avatars.githubusercontent.com/u/99130650?v=4"></img></td>
+ </tr>
 </table>
