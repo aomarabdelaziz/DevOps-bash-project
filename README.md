@@ -16,5 +16,5 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 
 ## Contributors
 <a href="https://github.com/OWNER/REPO/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=https://github.com/aomarabdelaziz/DevOps-bash-project" />
+  <img src="https://contrib.rocks/image?repo=aomarabdelaziz/DevOps-bash-project" />
 </a>
