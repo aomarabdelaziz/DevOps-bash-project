@@ -1,11 +1,11 @@
 #! /bin/bash
 
-Cyan='\033[1;36m'	        # Cyan Color Code
-Blue='\033[1;34m'	        # Blue Color code 
+Cyan='\033[1;36m'	          # Cyan Color Code
+Blue='\033[1;34m'	          # Blue Color code 
 Yellow='\033[1;33m'	        # Yellow Color code
-RED='\033[1;31m'	        # Red Color code 
+RED='\033[1;31m'	          # Red Color code 
 Green='\033[1;32m'	        # Green Color Green
-ColorReset='\033[0m' 		# No Color Code
+ColorReset='\033[0m' 		    # No Color Code
 
 function drawLogo() 
 {
@@ -25,27 +25,33 @@ cat << "EOF"
 EOF
 echo -e "${ColorReset}"
 
-
 }
 
 function mainMenu(){
-    echo -e "
-        ${Blue} Main Menu
-        ${RED} 1) Create Database
-        ${RED} 2) List Database
-        ${RED} 3) Connect TO Database
-        ${RED} 4) Drop Database
-        ${RED} 5) Exit
-    "
-    echo -e "Enter Your Choice : \c" #\c to get user input in the same line
-    read choice
 
-      case $choice in 
-		1) ./main_menu/create_db.sh;;
-		2) ./main_menu/list_db.sh;;
-		3) ./main_menu/connect_db.sh;;
-		4) ./main_menu/drop_db.sh;;
-		5) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+choice=$(zenity --list \
+  --height="250"\
+  --width="350"\
+  --cancel-label="Exit" \
+  --title="Main Menu" \
+  --column="Option" \
+     "Create Database" \
+     "List Database" \
+     "Connect To Database" \
+     "Drop Database" \
+     "Exit")
+
+    if [ $? -eq 1 ]
+    then
+        echo -e "${Green}Exited..${ColorReset}" #exit from database
+        exit
+    fi
+    case $choice in 
+		"Create Database") ./main_menu/create_db.sh;;
+		"List Database") ./main_menu/list_db.sh;;
+		"Connect To Database") ./main_menu/connect_db.sh;;
+		"Drop Database") ./main_menu/drop_db.sh;;
+    1) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
 		*) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 	esac
 }
@@ -107,17 +113,34 @@ fi
 }
 function askForDatabaseCred() {
   
-  setOutputColorGreen
-  echo -e "Database username : \c" #\c to get user input in the same line
-  read username
+  while true
+  do
+      data=$(zenity --forms --title="Database login" \
+    --text="Enter your database creds." \
+    --separator="," \
+    --add-entry="Database name" \
+    --add-password="Database password" \
+    --add-entry="Database" )
+    exitCode=$?
+    if [[ $exitCode == 1 ]]
+    then
+        break
+    fi
 
-  echo -e "Database password: \c" #\c to get user input in the same line
-  read -s PASSWORD
+    dbUsername=`echo $data | cut -d "," -f 1`
+    dbPassword=`echo $data | cut -d "," -f 2`
+    dbName=`echo $data | cut -d "," -f 3`
+    if [[ -z "$dbName" ]]; then
+      zenity --error --width="230" --text="Database field cannot be empty"
+   else
+      if isDatabaseExist $dbName
+        then
+           break
+      else
+           zenity --error --width="200" --text="Database [$dbName] is not exist"   
+        fi
+    fi  
+  done
 
-  echo -e "\nDatabase name : \c" #\c to get user input in the same line
-  read dbName
-
-  clear
-  resetColor
 }
 
