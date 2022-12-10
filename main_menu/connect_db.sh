@@ -5,37 +5,43 @@
 
 askForDatabaseCred
 
-if isDatabaseExist $dbName
-then    
-    echo -e "
-        ${Blue} Main Menu
-        ${RED} 1) Create Table
-        ${RED} 2) List Tables
-        ${RED} 3) Drop Table
-        ${RED} 4) Insert Into Table
-        ${RED} 5) Select From Table
-        ${RED} 6) Delete From Table
-        ${RED} 7) Update Table
-        ${RED} 8) Main Menu
-        ${RED} 9) Exit
-    "
-    echo -e "Enter Your Choice : \c$" #\c to get user input in the same line
-    read choice
+  if [[ $exitCode == 1 ]]
+    then
+        mainMenu
+        exit
+    fi
+
+choice=$(zenity --list \
+  --height="250"\
+  --width="350"\
+  --cancel-label="Exit" \
+  --title="Database menu" \
+  --column="Option" \
+     "Create Table" \
+     "List Tables" \
+     "Drop Table" \
+     "Insert Into Table" \
+     "Select From Table" \
+     "Delete From Table" \
+     "Update Table" \
+     "Main Menu" \
+     "Exit")
+
+        if [ $? -eq 1 ]
+        then
+            echo -e "${Green}Exited..${ColorReset}" #exit from database
+            exit
+        fi
 
     case $choice in 
-            1) ./user_operations/ddl-operations/create_table.sh;;
-            2) ./user_operations/ddl-operations/list_table.sh;;
-            3) ./user_operations/ddl-operations/drop_table.sh;;
-            4) ./user_operations/dml-operations/insert_into_table.sh;;
-            5) ./user_operations/dml-operations/select_from_table.sh;;
-            6) ./user_operations/dml-operations/delete_from_table.sh;;
-            7) ./user_operations/dml-operations/update_table.sh;;
-            8) clear; mainMenu;;
+            "Create Table"). ./user_operations/ddl-operations/create_table.sh $dbName;;
+            "List Tables" ). ./user_operations/ddl-operations/list_table.sh $dbName;;
+            "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $dbName;;
+            "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $dbName;;
+            "Select From Table"). ./user_operations/dml-operations/select_from_table.sh $dbName;;
+            "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $dbName;;
+            "Update Table"). ./user_operations/dml-operations/update_table.sh $dbName;;
+            "Main Menu") mainMenu;;
             9) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
             *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
     esac
-  else
-        setOutputColorRed
-        echo "This database is not exist"
-        mainMenu        
-  fi
