@@ -39,8 +39,9 @@ Upon user Connect to Specific Database, there will be new Screen with\
 **hello -n Joe**
 : Displays "Hello, Joe!" and then exits.
 
-# AUTHORS
-Written by Abdelaziz Omar <https://github.com/aomarabdelaziz> and Mahmoud Dahby <https://github.com/mahmouddahaby>.
+# Contributors
+**Abdelaziz Omar** <https://github.com/aomarabdelaziz>\
+**Mahmoud Dahby**  <https://github.com/mahmouddahaby>
 
 # BUGS
 Submit bug reports online at: <https://github.com/aomarabdelaziz/DevOps-bash-project/issues>

@@ -82,10 +82,13 @@ name of the person to say hello to
 .TP
 .B \f[B]hello \-n Joe\f[R]
 Displays \[lq]Hello, Joe!\[rq] and then exits.
-.SH AUTHORS
+.SH Contributors
 .PP
-Written by Abdelaziz Omar <https://github.com/aomarabdelaziz> and
-Mahmoud Dahby <https://github.com/mahmouddahaby>.
+\f[B]Abdelaziz Omar\f[R] <https://github.com/aomarabdelaziz>
+.PD 0
+.P
+.PD
+\f[B]Mahmoud Dahby\f[R] <https://github.com/mahmouddahaby>
 .SH BUGS
 .PP
 Submit bug reports online at:
