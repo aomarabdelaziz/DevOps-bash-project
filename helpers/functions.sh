@@ -92,3 +92,20 @@ function isDatabaseExist()
 function createDatabase() {
   mkdir ./Database/$1
 }
+
+
+
+
+function checkDatabase(){
+DIR=Database
+if [ -z "$(ls -A $DIR)" ];
+then
+    echo -e " ${RED} !!!No Database found"
+    echo -e " ${RED} >>>Going back to the Main menu"
+    mainMenu
+else
+    ls $DIR
+    mainMenu
+fi
+}
+
