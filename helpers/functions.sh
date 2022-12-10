@@ -144,3 +144,21 @@ function askForDatabaseCred() {
 
 }
 
+function Drop(){
+      setOutputColorCyan
+      ls Database
+      resetColor
+      cd Database
+      echo -e "${Blue}Select the Database you want to remove: \c"
+      read Droped
+      resetColor
+      if [[ -d $Droped ]];
+      then
+        rm -r "$Droped"
+        echo "$Droped Deleted Successfully"
+      else
+        echo -e "${RED} Database Doesn't exist"
+        cd ..
+        ./main_menu/drop_db.sh
+      fi
+}
