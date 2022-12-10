@@ -105,6 +105,7 @@ then
     mainMenu
 else
     ls $DIR
+    mainMenu
 fi
 }
 
