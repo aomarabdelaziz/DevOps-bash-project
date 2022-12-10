@@ -33,11 +33,11 @@ Upon user Connect to Specific Database, there will be new Screen with\
 : display help message
 
 **-n** 
-: name of the person to say hello to<div class="open_grepper_editor" title="Edit & Save To Grepper"></div>
+: name of the person to say hello to
 
 # EXAMPLES
 **hello -n Joe**
-: Displays "Hello, Joe!" and then exits.<div class="open_grepper_editor" title="Edit & Save To Grepper"></div>
+: Displays "Hello, Joe!" and then exits.
 
 # AUTHORS
 Written by Abdelaziz Omar <https://github.com/aomarabdelaziz> and Mahmoud Dahby <https://github.com/mahmouddahaby>.
@@ -46,7 +46,14 @@ Written by Abdelaziz Omar <https://github.com/aomarabdelaziz> and Mahmoud Dahby 
 Submit bug reports online at: <https://github.com/aomarabdelaziz/DevOps-bash-project/issues>
 
 # SEE ALSO
-Full documentation and sources at: <https://github.com/aomarabdelaziz/DevOps-bash-project><div class="open_grepper_editor" title="Edit & Save To Grepper"></div>
+Full documentation and sources at: <https://github.com/aomarabdelaziz/DevOps-bash-project>
 
 # HOW TO RUN MANUAL
 man -l dbmsman
+
+# Reference
+Zenity GUI at: <https://help.gnome.org/users/zenity/stable/>
+
+Progress Bar at: <https://github.com/edouard-lopez/progress-bar.sh>
+
+PanDoc to run MANUAL at: <https://www.pragmaticlinux.com/2021/01/create-a-man-page-for-your-own-program-or-script-with-pandoc/>

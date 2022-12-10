@@ -78,14 +78,10 @@ display help message
 .TP
 .B \f[B]\-n\f[R]
 name of the person to say hello to
-.RS
-.RE
 .SH EXAMPLES
 .TP
 .B \f[B]hello \-n Joe\f[R]
 Displays \[lq]Hello, Joe!\[rq] and then exits.
-.RS
-.RE
 .SH AUTHORS
 .PP
 Written by Abdelaziz Omar <https://github.com/aomarabdelaziz> and
@@ -95,8 +91,17 @@ Mahmoud Dahby <https://github.com/mahmouddahaby>.
 Submit bug reports online at:
 <https://github.com/aomarabdelaziz/DevOps-bash-project/issues>
 .SH SEE ALSO
+.PP
 Full documentation and sources at:
 <https://github.com/aomarabdelaziz/DevOps-bash-project>
 .SH HOW TO RUN MANUAL
 .PP
 man \-l dbmsman
+.SH Reference
+.PP
+Zenity GUI at: <https://help.gnome.org/users/zenity/stable/>
+.PP
+Progress Bar at: <https://github.com/edouard-lopez/progress-bar.sh>
+.PP
+PanDoc to run MANUAL at:
+<https://www.pragmaticlinux.com/2021/01/create-a-man-page-for-your-own-program-or-script-with-pandoc/>
