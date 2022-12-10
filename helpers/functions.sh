@@ -37,7 +37,7 @@ function mainMenu(){
         ${RED} 4) Drop Database
         ${RED} 5) Exit
     "
-    echo -e "Enter Your Choice : ${Blue}\c${ColorReset}" #\c to get user input in the same line
+    echo -e "Enter Your Choice : \c" #\c to get user input in the same line
     read choice
 
       case $choice in 
@@ -88,7 +88,23 @@ function isDatabaseExist()
   
 }
 
-
 function createDatabase() {
   mkdir ./Database/$1
 }
+
+function askForDatabaseCred() {
+  
+  setOutputColorGreen
+  echo -e "Database username : \c" #\c to get user input in the same line
+  read username
+
+  echo -e "Database password: \c" #\c to get user input in the same line
+  read -s PASSWORD
+
+  echo -e "\nDatabase name : \c" #\c to get user input in the same line
+  read dbName
+
+  clear
+  resetColor
+}
+
