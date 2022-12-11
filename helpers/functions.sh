@@ -103,11 +103,12 @@ function checkDatabase(){
 DIR=Database
 if [ -z "$(ls -A $DIR)" ];
 then
-    echo -e " ${RED} !!!No Database found"
-    echo -e " ${RED} >>>Going back to the Main menu"
+    # echo -e " ${RED} !!!No Database found"
+    # echo -e " ${RED} >>>Going back to the Main menu"
+    zenity --error --width="200" --text="No Database found"
     mainMenu
 else
-    ls $DIR
+    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
     mainMenu
 fi
 }
@@ -151,20 +152,18 @@ function askForDatabaseCred() {
 }
 
 function Drop(){
-      setOutputColorCyan
-      ls Database
+      zenity --error --width="200" --text="Database Can't be beack after Drop"
+      # setOutputColorCyan
+      dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+      # resetColor
+      # cd Database
+      # echo -e "${Blue}Select the Database you want to remove: \c"
+      # read Droped
       resetColor
-      cd Database
-      echo -e "${Blue}Select the Database you want to remove: \c"
-      read Droped
-      resetColor
-      if [[ -d $Droped ]];
+      if [[ -d $dbName ]];
       then
-        rm -r "$Droped"
-        echo "$Droped Deleted Successfully"
-      else
-        echo -e "${RED} Database Doesn't exist"
-        cd ..
-        ./main_menu/drop_db.sh
+        rm -r /DataBase/$dbName
+        zenity --notification --width="200" --text="No Database found $dbName"
+        mainMenu
       fi
 }
