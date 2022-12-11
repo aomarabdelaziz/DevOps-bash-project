@@ -113,23 +113,29 @@ fi
 }
 function askForDatabaseCred() {
   
+  showDBList=''
   while true
   do
-      data=$(zenity --forms --title="Database login" \
-    --text="Enter your database creds." \
-    --separator="," \
-    --add-entry="Database name" \
-    --add-password="Database password" \
-    --add-entry="Database" )
-    exitCode=$?
-    if [[ $exitCode == 1 ]]
-    then
-        break
-    fi
+      if [ -z $showDBList ]
+      then
+        data=$(zenity --forms --title="Database login" \
+        --text="Enter your database creds." \
+        --separator="," \
+        --add-entry="Database name" \
+        --add-password="Database password")
+          exitCode=$?
+          if [[ $exitCode == 1 ]]
+          then
+              break
+          fi
 
-    dbUsername=`echo $data | cut -d "," -f 1`
-    dbPassword=`echo $data | cut -d "," -f 2`
-    dbName=`echo $data | cut -d "," -f 3`
+              dbUsername=`echo $data | cut -d "," -f 1`
+              dbPassword=`echo $data | cut -d "," -f 2`
+              showDBList="true"
+      fi
+
+    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errolog)"
+    #dbName=`echo $data | cut -d "," -f 3`
     if [[ -z "$dbName" ]]; then
       zenity --error --width="230" --text="Database field cannot be empty"
    else
