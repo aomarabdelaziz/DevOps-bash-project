@@ -132,7 +132,7 @@ function askForDatabaseCred() {
 
               dbUsername=`echo $data | cut -d "," -f 1`
               dbPassword=`echo $data | cut -d "," -f 2`
-              showDBList="true"
+              showDBList="true"/DataBase//DataBase//DataBase//DataBase//DataBase/
       fi
 
     dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
@@ -152,18 +152,22 @@ function askForDatabaseCred() {
 }
 
 function Drop(){
-      zenity --error --width="200" --text="Database Can't be beack after Drop"
       # setOutputColorCyan
       dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
       # resetColor
       # cd Database
       # echo -e "${Blue}Select the Database you want to remove: \c"
       # read Droped
-      resetColor
-      if [[ -d $dbName ]];
+      # resetColor
+      # cd Database
+      if [[ -e $dbName ]];
       then
-        rm -r /DataBase/$dbName
-        zenity --notification --width="200" --text="No Database found $dbName"
+        zenity --error --width="200" --text="Database Can't be beack after Drop"
+        cd Database
+        rm -r $dbName
+        zenity --notification --width="200" --text="$dbName Deleted"
+        mainMenu
+      else
         mainMenu
       fi
 }
