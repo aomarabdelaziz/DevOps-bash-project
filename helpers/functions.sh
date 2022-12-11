@@ -134,7 +134,7 @@ function askForDatabaseCred() {
               showDBList="true"
       fi
 
-    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errolog)"
+    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
     #dbName=`echo $data | cut -d "," -f 3`
     if [[ -z "$dbName" ]]; then
       zenity --error --width="230" --text="Database field cannot be empty"
