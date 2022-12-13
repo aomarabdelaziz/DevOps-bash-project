@@ -159,15 +159,15 @@ function Drop(){
       # echo -e "${Blue}Select the Database you want to remove: \c"
       # read Droped
       # resetColor
-      # cd Database
-      if [[ -e $dbName ]];
+      
+      if  isDatabaseExist $dbName ;
       then
         zenity --error --width="200" --text="Database Can't be beack after Drop"
-        cd Database
-        rm -r $dbName
-        zenity --notification --width="200" --text="$dbName Deleted"
+        rm -r Database/$dbName
+        zenity --notification --width="200" --text="$dbName Deleted Successfully"
         mainMenu
       else
         mainMenu
       fi
+      
 }
