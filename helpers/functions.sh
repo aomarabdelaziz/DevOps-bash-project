@@ -162,7 +162,7 @@ function Drop(){
       
       if  isDatabaseExist $dbName ;
       then
-        zenity --error --width="200" --text="Database Can't be beack after Drop"
+        zenity --error --width="200" --text="Database Can't be reached after Drop"
         rm -r Database/$dbName
         zenity --notification --width="200" --text="$dbName Deleted Successfully"
         mainMenu
