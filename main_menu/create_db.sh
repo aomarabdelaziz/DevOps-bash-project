@@ -11,8 +11,9 @@ do
   --text="Enter database name:" \
   --entry-text "ITI-DB")
 
-  if [[ -z "$dbName" ]]; then
-      zenity --error --width="230" --text="Database field cannot be empty"
+  if [[ -z "$dbName" ]] || [[ ! $dbName =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+  then
+      zenity --error --width="300" --text="Database field cannot be empty or start with space or number or special char"
   else
       # check if the database is exit or not
       if isDatabaseExist $dbName

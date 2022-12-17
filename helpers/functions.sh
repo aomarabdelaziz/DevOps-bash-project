@@ -96,6 +96,7 @@ function isDatabaseExist()
 
 function createDatabase() {
   mkdir ./Database/$1
+  mkdir ./Database/$1/metadata
 }
 
 
