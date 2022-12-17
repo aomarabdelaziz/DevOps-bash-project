@@ -19,11 +19,6 @@ choice=$(zenity --list \
   --column="Option" \
      "Create Table" \
      "List Tables" \
-     "Drop Table" \
-     "Insert Into Table" \
-     "Select From Table" \
-     "Delete From Table" \
-     "Update Table" \
      "Main Menu" \
      "Exit")
 
@@ -35,13 +30,8 @@ choice=$(zenity --list \
 
     case $choice in 
             "Create Table"). ./user_operations/ddl-operations/create_table.sh $dbName;;
-            "List Tables" ). ./user_operations/ddl-operations/list_table.sh $dbName;;
-            "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $dbName;;
-            "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $dbName;;
-            "Select From Table"). ./user_operations/dml-operations/select_from_table.sh $dbName;;
-            "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $dbName;;
-            "Update Table"). ./user_operations/dml-operations/update_table.sh $dbName;;
+            "List Tables" ). ./user_operations/ddl-operations/list_tables.sh $dbName;;
             "Main Menu") mainMenu;;
-            9) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+            4) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
             *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
     esac
