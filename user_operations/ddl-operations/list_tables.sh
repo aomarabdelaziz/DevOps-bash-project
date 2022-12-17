@@ -31,7 +31,7 @@ choice=$(zenity --list \
         fi
 
 case $choice in 
-    "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $table;;
+    "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $dbName $table;;
     "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $table;;
     "Select From Table"). ./user_operations/dml-operations/select_from_table.sh $table;;
     "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $table;;
