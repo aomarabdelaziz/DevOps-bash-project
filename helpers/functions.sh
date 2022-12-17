@@ -153,6 +153,12 @@ function askForDatabaseCred() {
 }
 
 function Drop(){
+
+     if [ -z "$(ls -A Database)" ];
+     then
+        zenity --error --width="200" --text="No Database Found"
+        mainMenu
+     fi
       # setOutputColorCyan
       dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
       # resetColor
@@ -160,7 +166,7 @@ function Drop(){
       # echo -e "${Blue}Select the Database you want to remove: \c"
       # read Droped
       # resetColor
-      
+
       if  isDatabaseExist $dbName ;
       then
         zenity --error --width="200" --text="Database Can't be reached after Drop"
