@@ -1,0 +1,4 @@
+Number Of Columns : 3
+ID;Int;PK
+Name:String
+Email:String
