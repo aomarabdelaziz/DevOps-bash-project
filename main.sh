@@ -4,6 +4,7 @@
 . ./helpers/functions.sh
 . ./progress-bar.sh
 
+
 echo -e "${RED}Loading.."
 progress-bar 5
 resetColor
