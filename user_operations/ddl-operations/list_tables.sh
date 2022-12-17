@@ -32,10 +32,10 @@ choice=$(zenity --list \
 
 case $choice in 
     "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $dbName $table;;
-    "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $table;;
-    "Select From Table"). ./user_operations/dml-operations/select_from_table.sh $table;;
-    "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $table;;
-    "Update Table"). ./user_operations/dml-operations/update_table.sh $table;;
+    "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $dbName $table;;
+    "Select From Table"). ./user_operations/dml-operations/select_from_table.sh $dbName $table;;
+    "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $dbName $table;;
+    "Update Table"). ./user_operations/dml-operations/update_table.sh $dbName $table;;
     "Main Menu") mainMenu;;
     7) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
