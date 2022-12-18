@@ -26,4 +26,8 @@ do
 
 done
 
-zenity --list --title="list" --width="500" --height="300" "${columns[@]}" "${rows[@]}"
+zenity --list --cancel-label="Back" --title="Table $table Records"  --width="500" --height="300" "${columns[@]}" "${rows[@]}"
+if [ $? -eq 1 ]
+then
+    tableMenu $dbName $table
+fi 

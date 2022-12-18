@@ -43,15 +43,16 @@ choice=$(zenity --list \
 
     if [ $? -eq 1 ]
     then
-        echo -e "${Green}Exited..${ColorReset}" #exit from database
-        exit
+         echo -e "${Green}Exited..${ColorReset}"
+         exit
     fi
+ 
     case $choice in 
 		"Create Database") ./main_menu/create_db.sh;;
 		"List Database") ./main_menu/list_db.sh;;
 		"Connect To Database") ./main_menu/connect_db.sh;;
 		"Drop Database") ./main_menu/drop_db.sh;;
-    1) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+    "Exit") echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
 		*) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 	esac
 }
@@ -135,8 +136,13 @@ function askForDatabaseCred() {
               dbPassword=`echo $data | cut -d "," -f 2`
               showDBList="true"/DataBase//DataBase//DataBase//DataBase//DataBase/
       fi
-
-    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+  
+    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity  --cancel-label="Back" --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+    lastOp=$?
+     if [[ $lastOp == 1 ]]
+     then
+        mainMenu
+     fi 
     #dbName=`echo $data | cut -d "," -f 3`
     if [[ -z "$dbName" ]]; then
       zenity --error --width="230" --text="Database field cannot be empty"
@@ -177,4 +183,64 @@ function Drop(){
         mainMenu
       fi
       
+}
+
+function DatabaseMenu(){
+  choice=$(zenity --list \
+  --height="250"\
+  --width="350"\
+  --cancel-label="Back" \
+  --title="Database $1 Menu" \
+  --column="Option" \
+     "Create Table" \
+     "List Tables" \
+     "Main Menu" \
+     "Exit")
+
+        if [ $? -eq 1 ]
+        then
+            mainMenu
+        fi
+
+    case $choice in 
+            "Create Table"). ./user_operations/ddl-operations/create_table.sh $1;;
+            "List Tables" ). ./user_operations/ddl-operations/list_tables.sh $1;;
+            "Main Menu") mainMenu;;
+            4) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+            *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
+    esac
+}
+
+function tableMenu() {
+
+  choice=$(zenity --list \
+  --height="250"\
+  --width="350"\
+  --cancel-label="Back" \
+  --title="Table $2 Menu" \
+  --column="Option" \
+     "Drop Table" \
+     "Insert Into Table" \
+     "Select From Table" \
+     "Delete From Table" \
+     "Update Table" \
+     "Main Menu" \
+     "Exit")
+
+        if [ $? -eq 1 ]
+        then
+            DatabaseMenu $dbName
+        fi
+
+case $choice in 
+    "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $1 $2;;
+    "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $1 $2;;
+    "Select From Table"). ./user_operations/dml-operations/select_menu.sh $1 $2;;
+    "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $1 $2;;
+    "Update Table"). ./user_operations/dml-operations/update_table.sh $1 $2;;
+    "Main Menu") mainMenu;;
+    7) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+    *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
+esac 
+
 }
