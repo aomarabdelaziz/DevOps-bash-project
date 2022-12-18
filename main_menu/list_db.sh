@@ -18,7 +18,7 @@ shopt -s extglob
 List=$(zenity --list \
   --height="250"\
   --width="350"\
-  --cancel-label="Exit" \
+  --cancel-label="Back" \
   --title="Main Menu" \
   --column="Option" \
      "List Database" \
@@ -28,8 +28,7 @@ List=$(zenity --list \
 
         if [ $? -eq 1 ]
         then
-            echo -e "${Green}Exited..${ColorReset}" #exit from database
-            exit
+            mainMenu
         fi
 
 # to list the data base and make the customer select
