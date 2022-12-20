@@ -219,11 +219,11 @@ function tableMenu() {
   --cancel-label="Back" \
   --title="Table $2 Menu" \
   --column="Option" \
-     "Drop Table" \
-     "Insert Into Table" \
-     "Select From Table" \
-     "Delete From Table" \
-     "Update Table" \
+     "Drop Table [$2]" \
+     "Insert Into Table [$2]" \
+     "Select From Table [$2]" \
+     "Delete From Table [$2]" \
+     "Update Table [$2]" \
      "Main Menu" \
      "Exit")
 
@@ -233,11 +233,11 @@ function tableMenu() {
         fi
 
 case $choice in 
-    "Drop Table"). ./user_operations/ddl-operations/drop_table.sh $1 $2;;
-    "Insert Into Table"). ./user_operations/dml-operations/insert_into_table.sh $1 $2;;
-    "Select From Table"). ./user_operations/dml-operations/select_menu.sh $1 $2;;
-    "Delete From Table"). ./user_operations/dml-operations/delete_from_table.sh $1 $2;;
-    "Update Table"). ./user_operations/dml-operations/update_table.sh $1 $2;;
+    "Drop Table [$2]"). ./user_operations/ddl-operations/drop_table.sh $1 $2;;
+    "Insert Into Table [$2]"). ./user_operations/dml-operations/insert_into_table.sh $1 $2;;
+    "Select From Table [$2]"). ./user_operations/dml-operations/select_menu.sh $1 $2;;
+    "Delete From Table [$2]"). ./user_operations/dml-operations/delete_menu.sh $1 $2;;
+    "Update Table [$2]"). ./user_operations/dml-operations/update_table.sh $1 $2;;
     "Main Menu") mainMenu;;
     7) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
