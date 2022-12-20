@@ -244,3 +244,105 @@ case $choice in
 esac 
 
 }
+
+
+function table(){
+
+    
+    tablename=$(zenity --entry \
+    --title="Add new table" \
+    --text="Enter table name:" \
+    --entry-text "ITI-table")
+
+    
+while true
+do
+  tablename=$(zenity --entry \
+    --title="Add new table" \
+    --text="Enter table name:" \
+    --entry-text "ITI-table")
+
+  if [[ -z "$tablename" ]] || [[ ! $tablename =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+  then
+      zenity --error --width="300" --text="Table field cannot be empty or start with space or number or special char"
+  else
+      # check if the Table is exit or not
+      if isTableExist $tablename
+      then
+          zenity --error --width="200" --text="[$tablename] is already exist"   
+      else
+          createtable $tablename
+
+          # check if last command is Done
+          if [ $? -eq 0 ]
+          then
+              #setOutputColorGreen
+              #echo -e "table ${Yellow}[$dbName]${ColorReset} ${Green}created succefully"
+              zenity --info --width="200" --text="[$tablename] created succefully"
+              break
+          else
+              #setOutputColorRed
+              #echo "Error occured during creating the table"
+              zenity --error --width="200" --text="Error occured during creating the table"   
+
+          fi
+
+        fi
+      fi 
+done
+}
+
+function createtable(){
+    touch Database/$dbName/$1
+    touch Database/$dbName/$1.meta
+    createcolumns Database/$dbName/$1 Database/$dbName/$1.meta
+}
+
+
+
+function isTableExist()
+{
+  if [ -f ./Database/$dbName/$1 ]
+  then
+    # 0 = true
+    return 0 
+  else
+    # 1 = false
+    return 1
+  fi
+  
+}
+
+function createcolumns(){
+    column=$(zenity --entry \
+    --title="Enter the number of columns" \
+    --text="Enter the number of columns:" \
+    --entry-text "number-column")
+
+  for (( i = 1 ; i <= $column ; i++ ));
+  do
+      tablename=$(zenity --entry \
+      --title="Enter column name" \
+      --text="Enter column name:" \
+      --entry-text "Column-name")
+
+      tablekind=$(zenity --list \
+      --height="250"\
+      --width="350"\
+      --cancel-label="Exit" \
+      --title="Main Menu" \
+      --column="Option" \
+          "Integer" \
+          "String" )
+      if (( $i == $column ));
+      then
+          echo -e "$tablename\c" >> $1
+          echo -e "$tablename;$tablekind" >> $2
+      elif (( $i < $column ));
+      then
+          echo -e "columns-num;$column" >> $2
+          echo -e "$tablename;\c" >> $1
+          echo -e "$tablename;$tablekind" >> $2  
+      fi
+  done
+}
