@@ -237,7 +237,7 @@ case $choice in
     "Insert Into Table [$2]"). ./user_operations/dml-operations/insert_into_table.sh $1 $2;;
     "Select From Table [$2]"). ./user_operations/dml-operations/select_menu.sh $1 $2;;
     "Delete From Table [$2]"). ./user_operations/dml-operations/delete_menu.sh $1 $2;;
-    "Update Table [$2]"). ./user_operations/dml-operations/update_table.sh $1 $2;;
+    "Update Table [$2]"). ./user_operations/dml-operations/update_menu.sh $1 $2;;
     "Main Menu") mainMenu;;
     7) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
