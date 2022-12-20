@@ -42,36 +42,40 @@ then
     sed -i "$lines" Database/$dbName/$table;
     zenity --info --width="200" --text="[$no_rows] rows deleted"
 
+    no_of_columns=$(wc -l Database/$dbName/.metadata/$table.meta | cut -d " " -f1)
+
+
+    columns=()
+    rows=()
+
+    for (( i = 2; i<=$no_of_columns+1; i++ ))
+    do
+        column_name=$(awk "NR==$i" Database/$dbName/.metadata/$table.meta | cut -d ';' -f1)
+        columns+=("--column=$column_name")
+    done
+
+    for irow in `cat Database/$dbName/$table `
+    do
+        
+    for (( i = 1; i<=$no_of_columns; i++ ))
+    do
+            row=$(echo $irow | cut -d ';' -f$i)
+            rows+=($row)
+    done
+
+    done
+
+    zenity --list  --cancel-label="Back"  --title="Table $table Records"  --width="500" --height="300" "${columns[@]}" "${rows[@]}"
+    if [ $? -eq 1 ]
+    then
+        tableMenu $dbName $table
+    fi 
+else
+        zenity --info --width="200" --text="[$no_rows] rows found"
+        tableMenu $dbName $table
 fi
 
-no_of_columns=$(wc -l Database/$dbName/.metadata/$table.meta | cut -d " " -f1)
 
-
-columns=()
-rows=()
-
-for (( i = 2; i<=$no_of_columns+1; i++ ))
-do
-    column_name=$(awk "NR==$i" Database/$dbName/.metadata/$table.meta | cut -d ';' -f1)
-    columns+=("--column=$column_name")
-done
-
-for irow in `cat Database/$dbName/$table `
-do
-    
-  for (( i = 1; i<=$no_of_columns; i++ ))
-  do
-        row=$(echo $irow | cut -d ';' -f$i)
-        rows+=($row)
-  done
-
-done
-
-zenity --list  --cancel-label="Back"  --title="Table $table Records"  --width="500" --height="300" "${columns[@]}" "${rows[@]}"
-if [ $? -eq 1 ]
-then
-    tableMenu $dbName $table
-fi 
 
 
 
