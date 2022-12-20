@@ -318,7 +318,8 @@ function createcolumns(){
     --title="Enter the number of columns" \
     --text="Enter the number of columns:" \
     --entry-text "number-column")
-
+    
+    echo -e "columns-num;$column" >> $2
   for (( i = 1 ; i <= $column ; i++ ));
   do
       tablename=$(zenity --entry \
@@ -334,13 +335,14 @@ function createcolumns(){
       --column="Option" \
           "Integer" \
           "String" )
+
+      
       if (( $i == $column ));
       then
           echo -e "$tablename\c" >> $1
           echo -e "$tablename;$tablekind" >> $2
       elif (( $i < $column ));
       then
-          echo -e "columns-num;$column" >> $2
           echo -e "$tablename;\c" >> $1
           echo -e "$tablename;$tablekind" >> $2  
       fi
