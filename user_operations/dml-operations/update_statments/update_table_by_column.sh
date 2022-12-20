@@ -11,7 +11,7 @@ while true
 do
     old_column_value=$(zenity --entry \
     --title="Enter The key $column Value" \
-    --text="Update $table set $column where $column =  " \
+    --text="Update $table set $column =  " \
     --width="200" \
     --entry-text "")
 
@@ -27,7 +27,7 @@ while true
 do
     new_column_value=$(zenity --entry \
     --title="Enter The $column Value" \
-    --text="Update $table set $column = NEW_COLUMN_VALUE where $column = $old_column_value " \
+    --text="Update $table set $column = {ِVALUE} where $column = $old_column_value " \
     --width="200" \
     --entry-text "")
 
