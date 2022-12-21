@@ -1,6 +1,5 @@
 #! /bin/bash
-val=FALSE
-
+val=$(printenv DBMS_INSTALLED)
 
 if [[ $val == 'TRUE' ]]
 then
@@ -39,4 +38,5 @@ else
         echo 'To start the project, please run <dbms-run> command'
     fi
 fi
+
 
