@@ -23,7 +23,8 @@ function install()
     rm master.zip 
     rm -r DevOps-bash-project-master
     #cd $HOME
-    echo "export PATH="$PATH:$PROJECT_PATH"" >> $HOME/.bashrc
+    echo 'export PATH="$PATH:$HOME/dbms"' >> $HOME/.bashrc
+    echo "export DBMS_INSTALLED=TRUE" >> $HOME/.bashrc
 
     
     
@@ -40,6 +41,21 @@ then
     if [[ $REPLY == [yY] ]]
     then
         rm -r $PROJECT_PATH
+        line_env=$(grep -n 'export DBMS_INSTALLED=TRUE' ~/.bashrc | cut -d ':' -f1)
+        if [ ! -z "$line_env" ]
+        then
+            echo $line_env
+            sed -i "$line_env"d $HOME/.bashrc;
+        fi
+
+        line_global_script=$(grep -n 'export PATH="$PATH:$HOME/dbms"' ~/.bashrc | cut -d ':' -f1)
+        if [ ! -z "$line_global_script" ]
+        then
+            echo $line_global_script
+            sed -i "$line_global_script"d $HOME/.bashrc;
+        fi
+
+
         if [ $? -eq 0 ]
         then
              echo 'Project folder is deleted'
