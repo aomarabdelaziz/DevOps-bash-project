@@ -1,6 +1,5 @@
 #! /bin/bash
-val=FALSE
-
+val=val=$(printenv DBMS_INSTALLED)
 
 if [[ $val == 'TRUE' ]]
 then
