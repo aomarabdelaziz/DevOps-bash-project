@@ -29,11 +29,14 @@ Upon user Connect to Specific Database, there will be new Screen with\
 
 
 # OPTIONS
-**-h** 
+**--help** 
 : display help message
 
-**-n** 
-: name of the person to say hello to
+**--version** 
+: display script version
+
+**--contributors** 
+: display Contributors
 
 # EXAMPLES
 **hello -n Joe**

@@ -30,9 +30,9 @@ else
     then
         echo 'DBMS Version 1.0, build on 2022'
     fi
-    if [[ $1 == "--authors" ]]
+    if [[ $1 == "--contributors" ]]
     then
-        echo 'DBMS Authors: <Abdelaziz Omar> . <Mahmoud Dahby>'
+        echo 'DBMS Contributors: <Abdelaziz Omar> . <Mahmoud Dahby>'
     fi
     if [[ $1 == "--help" ]]
     then

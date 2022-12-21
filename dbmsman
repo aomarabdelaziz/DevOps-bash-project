@@ -73,11 +73,14 @@ Upon user Connect to Specific Database, there will be new Screen with
 .PD
 .SH OPTIONS
 .TP
-.B \f[B]\-h\f[R]
+.B \f[B]\[en]help\f[R]
 display help message
 .TP
-.B \f[B]\-n\f[R]
-name of the person to say hello to
+.B \f[B]\[en]version\f[R]
+display script version
+.TP
+.B \f[B]\[en]contributors\f[R]
+display Contributors
 .SH EXAMPLES
 .TP
 .B \f[B]hello \-n Joe\f[R]
