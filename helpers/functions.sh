@@ -312,7 +312,9 @@ function createcolumns(){
     --title="Enter the number of columns" \
     --text="Enter the number of columns:" \
     --entry-text "number-column")
-    
+
+  if [[ $column =~ ^[0-9]+$ ]];
+  then
     echo -e "columns-num;$column" >> $1
   for (( i = 1 ; i <= $column ; i++ ));
   do
@@ -339,4 +341,8 @@ function createcolumns(){
           echo -e "$tablename;$tablekind" >> $1 
       fi
   done
+  else
+    zenity --error --width="200" --text="Column numbers must be digits only"  
+    createcolumns
+  fi
 }
