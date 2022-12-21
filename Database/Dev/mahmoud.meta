@@ -1,0 +1,4 @@
+num;Integer
+ID;Integer
+email;String
+customers;String

@@ -289,7 +289,7 @@ done
 function createtable(){
     touch Database/$dbName/$1
     touch Database/$dbName/$1.meta
-    createcolumns Database/$dbName/$1.meta
+    createColumns Database/$dbName/$1 Database/$dbName/$1.meta
 }
 
 
@@ -307,7 +307,7 @@ function isTableExist()
   
 }
 
-function createcolumns(){
+function createColumns(){
     column=$(zenity --entry \
     --title="Enter the number of columns" \
     --text="Enter the number of columns:" \
@@ -315,7 +315,7 @@ function createcolumns(){
 
   if [[ $column =~ ^[0-9]+$ ]];
   then
-    echo -e "columns-num;$column" >> $1
+    # echo -e "columns-num;$column" >> $2
   for (( i = 1 ; i <= $column ; i++ ));
   do
       tablename=$(zenity --entry \
@@ -335,10 +335,10 @@ function createcolumns(){
     
       if (( $i == $column ));
       then
-          echo -e "$tablename;$tablekind" >> $1
+          echo -e "$tablename;$tablekind" >> $2
       elif (( $i < $column ));
       then
-          echo -e "$tablename;$tablekind" >> $1 
+          echo -e "$tablename;$tablekind" >> $2 
       fi
   done
   else
