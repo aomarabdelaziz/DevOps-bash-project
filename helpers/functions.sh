@@ -248,13 +248,7 @@ esac
 
 function table(){
 
-    
-    tablename=$(zenity --entry \
-    --title="Add new table" \
-    --text="Enter table name:" \
-    --entry-text "ITI-table")
 
-    
 while true
 do
   tablename=$(zenity --entry \
