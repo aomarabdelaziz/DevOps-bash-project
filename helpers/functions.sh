@@ -288,8 +288,8 @@ done
 
 function createtable(){
     touch Database/$dbName/$1
-    touch Database/$dbName/$1.meta
-    createColumns Database/$dbName/$1 Database/$dbName/$1.meta
+    touch Database/$dbName/.metadata/$1.meta
+    createColumns Database/$dbName/$1 Database/$dbName/.metadata/$1.meta
 }
 
 
@@ -308,41 +308,44 @@ function isTableExist()
 }
 
 function createColumns(){
-    column=$(zenity --entry \
-    --title="Enter the number of columns" \
-    --text="Enter the number of columns:" \
-    --entry-text "number-column")
+  while true;
+    do
+      column=$(zenity --entry \
+      --title="Enter the number of columns" \
+      --text="Enter the number of columns:" \
+      --entry-text "number-column")
 
-  if [[ $column =~ ^[0-9]+$ ]];
-  then
-    # echo -e "columns-num;$column" >> $2
-  for (( i = 1 ; i <= $column ; i++ ));
-  do
-      tablename=$(zenity --entry \
-      --title="Enter column name" \
-      --text="Enter column name:" \
-      --entry-text "Column-name")
+    if [[ $column =~ ^[0-9]+$ ]];
+    then
+      # echo -e "columns-num;$column" >> $2
+    for (( i = 1 ; i <= $column ; i++ ));
+    do
+        tablename=$(zenity --entry \
+        --title="Enter column name" \
+        --text="Enter column name:" \
+        --entry-text "Column-name")
 
-      tablekind=$(zenity --list \
-      --height="250"\
-      --width="350"\
-      --cancel-label="Exit" \
-      --title="$tablename Kind" \
-      --column="Option" \
-          "Integer" \
-          "String" )
+        tablekind=$(zenity --list \
+        --height="250"\
+        --width="350"\
+        --cancel-label="Exit" \
+        --title="$tablename Kind" \
+        --column="Option" \
+            "Integer" \
+            "String" )
 
-    
-      if (( $i == $column ));
-      then
-          echo -e "$tablename;$tablekind" >> $2
-      elif (( $i < $column ));
-      then
-          echo -e "$tablename;$tablekind" >> $2 
+          if (( $i == $column ));
+          then
+              echo -e "$tablename;$tablekind" >> $2
+              zenity --info --width="200" --text="[$tablename] created succefully"
+              mainMenu
+          elif (( $i < $column ));
+          then
+              echo -e "$tablename;$tablekind" >> $2 
+          fi
+      done
+      else
+           zenity --error --width="300" --text="column number cannot be empty or start with space or number or special char"
       fi
   done
-  else
-    zenity --error --width="200" --text="Column numbers must be digits only"  
-    createcolumns
-  fi
 }
