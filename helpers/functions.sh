@@ -295,7 +295,7 @@ done
 function createtable(){
     touch Database/$dbName/$1
     touch Database/$dbName/$1.meta
-    createcolumns Database/$dbName/$1 Database/$dbName/$1.meta
+    createcolumns Database/$dbName/$1.meta
 }
 
 
@@ -319,7 +319,7 @@ function createcolumns(){
     --text="Enter the number of columns:" \
     --entry-text "number-column")
     
-    echo -e "columns-num;$column" >> $2
+    echo -e "columns-num;$column" >> $1
   for (( i = 1 ; i <= $column ; i++ ));
   do
       tablename=$(zenity --entry \
@@ -331,20 +331,18 @@ function createcolumns(){
       --height="250"\
       --width="350"\
       --cancel-label="Exit" \
-      --title="Main Menu" \
+      --title="$tablename Kind" \
       --column="Option" \
           "Integer" \
           "String" )
 
-      
+    
       if (( $i == $column ));
       then
-          echo -e "$tablename\c" >> $1
-          echo -e "$tablename;$tablekind" >> $2
+          echo -e "$tablename;$tablekind" >> $1
       elif (( $i < $column ));
       then
-          echo -e "$tablename;\c" >> $1
-          echo -e "$tablename;$tablekind" >> $2  
+          echo -e "$tablename;$tablekind" >> $1 
       fi
   done
 }
