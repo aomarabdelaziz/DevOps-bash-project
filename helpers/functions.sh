@@ -320,11 +320,20 @@ function createColumns(){
       # echo -e "columns-num;$column" >> $2
     for (( i = 1 ; i <= $column ; i++ ));
     do
+        while true;
+        do
         tablename=$(zenity --entry \
         --title="Enter column name" \
         --text="Enter column name:" \
         --entry-text "Column-name")
 
+        if [[ -z "$tablename" ]] || [[ ! $tablename =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+        then
+            zenity --error --width="300" --text="column field cannot be empty or start with space or number or special char"
+        else
+            break
+        fi
+        done
         tablekind=$(zenity --list \
         --height="250"\
         --width="350"\
