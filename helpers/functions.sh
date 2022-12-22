@@ -244,3 +244,117 @@ case $choice in
 esac 
 
 }
+
+
+function table(){
+
+
+while true
+do
+  tablename=$(zenity --entry \
+    --title="Add new table" \
+    --text="Enter table name:" \
+    --entry-text "ITI-table")
+
+  if [[ -z "$tablename" ]] || [[ ! $tablename =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+  then
+      zenity --error --width="300" --text="Table field cannot be empty or start with space or number or special char"
+  else
+      # check if the Table is exit or not
+      if isTableExist $tablename
+      then
+          zenity --error --width="200" --text="[$tablename] is already exist"   
+      else
+          createtable $tablename
+
+          # check if last command is Done
+          if [ $? -eq 0 ]
+          then
+              #setOutputColorGreen
+              #echo -e "table ${Yellow}[$dbName]${ColorReset} ${Green}created succefully"
+              zenity --info --width="200" --text="[$tablename] created succefully"
+              break
+          else
+              #setOutputColorRed
+              #echo "Error occured during creating the table"
+              zenity --error --width="200" --text="Error occured during creating the table"   
+
+          fi
+
+        fi
+      fi 
+done
+}
+
+function createtable(){
+    touch Database/$dbName/$1
+    touch Database/$dbName/.metadata/$1.meta
+    createColumns Database/$dbName/$1 Database/$dbName/.metadata/$1.meta
+}
+
+
+
+function isTableExist()
+{
+  if [ -f ./Database/$dbName/$1 ]
+  then
+    # 0 = true
+    return 0 
+  else
+    # 1 = false
+    return 1
+  fi
+  
+}
+
+function createColumns(){
+  while true;
+    do
+      column=$(zenity --entry \
+      --title="Enter the number of columns" \
+      --text="Enter the number of columns:" \
+      --entry-text "number-column")
+
+    if [[ $column =~ ^[0-9]+$ ]];
+    then
+      # echo -e "columns-num;$column" >> $2
+    for (( i = 1 ; i <= $column ; i++ ));
+    do
+        while true;
+        do
+        tablename=$(zenity --entry \
+        --title="Enter column name" \
+        --text="Enter column name:" \
+        --entry-text "Column-name")
+
+        if [[ -z "$tablename" ]] || [[ ! $tablename =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+        then
+            zenity --error --width="300" --text="column field cannot be empty or start with space or number or special char"
+        else
+            break
+        fi
+        done
+        tablekind=$(zenity --list \
+        --height="250"\
+        --width="350"\
+        --cancel-label="Exit" \
+        --title="$tablename Kind" \
+        --column="Option" \
+            "Integer" \
+            "String" )
+
+          if (( $i == $column ));
+          then
+              echo -e "$tablename;$tablekind" >> $2
+              zenity --info --width="200" --text="[$tablename] created succefully"
+              mainMenu
+          elif (( $i < $column ));
+          then
+              echo -e "$tablename;$tablekind" >> $2 
+          fi
+      done
+      else
+           zenity --error --width="300" --text="column number cannot be empty or start with space or number or special char"
+      fi
+  done
+}
