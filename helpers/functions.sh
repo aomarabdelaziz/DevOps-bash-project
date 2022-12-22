@@ -271,7 +271,7 @@ do
           if [ $? -eq 0 ]
           then
               #setOutputColorGreen
-              #echo -e "table ${Yellow}[$dbName]${ColorReset} ${Green}created succefully"
+              #echo -e "table ${Yellow}[$tablename]${ColorReset} ${Green}created succefully"
               zenity --info --width="200" --text="[$tablename] created succefully"
               break
           else
@@ -358,3 +358,10 @@ function createColumns(){
       fi
   done
 }
+
+
+
+function insert(){
+
+}
+
