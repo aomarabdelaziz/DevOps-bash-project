@@ -362,6 +362,29 @@ function createColumns(){
 
 
 function insert(){
-
+  var='!@#$%^&*()-_'
+  for (( i = 1 ; i <= "$(cat Database/$1/.metadata/$2.meta | wc -l)" ; i++ ));
+  do
+    while true;
+    do  
+        insert=$(zenity --entry \
+          --title="Enter value" \
+          --text="Insert here:" \
+          --entry-text "Your-Value")
+        if [[ -z $insert ]] || [[ $insert =~ [$var] ]];
+        then
+             zenity --error --width="300" --text="Insertion field cannot be empty or start with space or special char"
+        else
+             break
+        fi
+    done
+        if (( $i == "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
+        then
+          echo -e "$insert" >> Database/$1/$2
+        elif (( $i < "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
+        then
+          echo -e "$insert;\c" >> Database/$1/$2
+        fi
+  done
 }
 
