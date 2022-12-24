@@ -396,7 +396,7 @@ function insert(){
       then
         if [[ -z "$insert" ]] || [[ ! $insert =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
         then
-            zenity --error --width="300" --text="column field cannot be empty or start with space or number or special char"
+            zenity --error --width="300" --text="String type must be numbers only"
         else
             break
             d=$(($d+1))
