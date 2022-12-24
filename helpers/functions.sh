@@ -396,7 +396,7 @@ function insert(){
       then
         if [[ -z "$insert" ]] || [[ ! $insert =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
         then
-            zenity --error --width="300" --text="String type must be numbers only"
+            zenity --error --width="300" --text="String type must be chars only"
         else
             break
             d=$(($d+1))
