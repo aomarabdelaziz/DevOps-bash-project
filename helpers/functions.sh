@@ -56,7 +56,6 @@ choice=$(zenity --list \
 		*) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 	esac
 }
-echo hay
 
 function setOutputColorCyan() {
   echo -e "${Cyan}"
