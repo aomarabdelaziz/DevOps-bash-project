@@ -363,28 +363,60 @@ function createColumns(){
 
 function insert(){
   var='!@#$%^&*()-_'
-  for (( i = 1 ; i <= "$(cat Database/$1/.metadata/$2.meta | wc -l)" ; i++ ));
+  declare -a arr=();
+  declare -i s=0
+  declare -i d=0
+  for x in `awk -F ';'  '{print $2}' Database/$1/.metadata/$2.meta `
   do
+    arr[$s]=$x
+    ((s=$s+1))
+  done
+  for z in ${arr[@]};
+  do
+  # for (( i = 1 ; i <=  "$(cat Database/$1/.metadata/$2.meta | wc -l)" ; i++ ));
+  # do
+    
     while true;
     do  
-        insert=$(zenity --entry \
+      insert=$(zenity --entry \
           --title="Enter value" \
           --text="Insert here:" \
           --entry-text "Your-Value")
-        if [[ -z $insert ]] || [[ $insert =~ [$var] ]];
+        
+      if [[ $z =~ Integer ]];
+      then
+        if [[ $insert =~ ^[0-9]+$ ]];
         then
-             zenity --error --width="300" --text="Insertion field cannot be empty or start with space or special char"
+          d=$(($d+1))
+          break
         else
-             break
+          zenity --error --width="300" --text="Integer type must be numbers only"
         fi
-    done
-        if (( $i == "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
+      elif [[ $z =~ String ]];
+      then
+        if [[ -z "$insert" ]] || [[ ! $insert =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
         then
-          echo -e "$insert" >> Database/$1/$2
-        elif (( $i < "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
+            zenity --error --width="300" --text="column field cannot be empty or start with space or number or special char"
+        else
+            break
+            d=$(($d+1))
+        fi
+      fi 
+    
+    done
+      
+    
+        if (( $d != "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
         then
           echo -e "$insert;\c" >> Database/$1/$2
+          ((d=$d+1))
+         
+        else
+           echo -e "$insert" >> Database/$1/$2
+            mainMenu
         fi
-  done
+      
+    done
 }
+
 
