@@ -271,7 +271,7 @@ do
           if [ $? -eq 0 ]
           then
               #setOutputColorGreen
-              #echo -e "table ${Yellow}[$dbName]${ColorReset} ${Green}created succefully"
+              #echo -e "table ${Yellow}[$tablename]${ColorReset} ${Green}created succefully"
               zenity --info --width="200" --text="[$tablename] created succefully"
               break
           else
@@ -358,3 +358,65 @@ function createColumns(){
       fi
   done
 }
+
+
+
+function insert(){
+  var='!@#$%^&*()-_'
+  declare -a arr=();
+  declare -i s=0
+  declare -i d=0
+  for x in `awk -F ';'  '{print $2}' Database/$1/.metadata/$2.meta `
+  do
+    arr[$s]=$x
+    ((s=$s+1))
+  done
+  for z in ${arr[@]};
+  do
+  # for (( i = 1 ; i <=  "$(cat Database/$1/.metadata/$2.meta | wc -l)" ; i++ ));
+  # do
+    
+    while true;
+    do  
+      insert=$(zenity --entry \
+          --title="Enter value" \
+          --text="Insert here:" \
+          --entry-text "Your-Value")
+        
+      if [[ $z =~ Integer ]];
+      then
+        if [[ $insert =~ ^[0-9]+$ ]];
+        then
+          d=$(($d+1))
+          break
+        else
+          zenity --error --width="300" --text="Integer type must be numbers only"
+        fi
+      elif [[ $z =~ String ]];
+      then
+        if [[ -z "$insert" ]] || [[ ! $insert =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]] 
+        then
+            zenity --error --width="300" --text="column field cannot be empty or start with space or number or special char"
+        else
+            break
+            d=$(($d+1))
+        fi
+      fi 
+    
+    done
+      
+    
+        if (( $d != "$(cat Database/$1/.metadata/$2.meta | wc -l)" ));
+        then
+          echo -e "$insert;\c" >> Database/$1/$2
+          ((d=$d+1))
+         
+        else
+           echo -e "$insert" >> Database/$1/$2
+            mainMenu
+        fi
+      
+    done
+}
+
+

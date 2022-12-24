@@ -22,9 +22,9 @@ insert=$(zenity --list \
             exit
         fi
 
-case $create in
+case $insert in
     "Insert Into")
-        break
+        insert $dbName $table 
         ;;
     "Back")
         mainMenu
