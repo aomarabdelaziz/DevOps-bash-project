@@ -16,7 +16,7 @@ function install()
     if [ "" = "$PKG_OK" ]; then
         echo "No $REQUIRED_PKG. Setting up $REQUIRED_PKG."
         sudo apt-get --yes install $REQUIRED_PKG
-        sleep 10               
+        sleep 2               
     fi
     
     wget https://github.com/aomarabdelaziz/DevOps-bash-project/archive/master.zip
