@@ -27,7 +27,7 @@ dbms-run
 ## To rum mandb project  :   
 
 ```console
-man dbmsman    
+man dbms    
 ```
 
 ## Contributors
