@@ -4,8 +4,11 @@
 . ././helpers/functions.sh
 
 
-column="$(awk "NR>1" Database/$dbName/.metadata/$table.meta | awk -F ';' '{print $1}' | zenity --list --height="250" --width="300" --title="Table $table Columns" --text="Select Your Choosen Column"  --column="Columns" 2>>.errorlog)"
+column="$(awk "NR>0" Database/$dbName/.metadata/$table.meta | awk -F ';' '{print $1}' | zenity --list --height="250" --width="300" --title="Table $table Columns" --text="Select Your Choosen Column"  --column="Columns" 2>>.errorlog)"
 
+column_index=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f1)
+
+column_type=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f2 | cut -d ';' -f2)
 
 while true
 do
@@ -15,19 +18,14 @@ do
     --width="200" \
     --entry-text "")
 
-    if [[ -z "$column_value" ]]
-    then
-       zenity --error --width="300" --text="Column [$column] field cannot be empty"
-    else
-        break
-    fi
+    break
 done
 
-column_index=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f1)
 
 
 
-line=$(awk -F ";" -v value=$column_value -v colindex=$(($column_index-1)) '{if($colindex==value) print NR}'  Database/$dbName/$table);
+
+line=$(awk -F ";" -v value=$column_value -v colindex=$(($column_index)) '{if($colindex==value) print NR}'  Database/$dbName/$table);
 no_rows=0
 if [[ ! -z "$line" ]]
 then
@@ -48,7 +46,7 @@ then
     columns=()
     rows=()
 
-    for (( i = 2; i<=$no_of_columns+1; i++ ))
+    for (( i = 1; i<=$no_of_columns; i++ ))
     do
         column_name=$(awk "NR==$i" Database/$dbName/.metadata/$table.meta | cut -d ';' -f1)
         columns+=("--column=$column_name")
