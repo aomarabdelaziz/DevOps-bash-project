@@ -4,7 +4,7 @@
 
 
 # DESCRIPTION
-**DBMS** is a simply Bash scrip aim to develop DBMS, that will enable users to store and retrieve the data from Hard-disk.
+**DBMS** is a simply Bash script aim to develop DBMS, that will enable users to store and retrieve the data from Hard-disk.
 
 # Features
 The Application will be CLI Menu based app, that will provide to user this Menu items:\
