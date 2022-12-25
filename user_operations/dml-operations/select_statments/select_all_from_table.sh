@@ -9,7 +9,7 @@ no_of_columns=$(wc -l Database/$dbName/.metadata/$table.meta | cut -d " " -f1)
 columns=()
 rows=()
 
-for (( i = 2; i<=$no_of_columns+1; i++ ))
+for (( i = 1; i<=$no_of_columns; i++ ))
 do
     column_name=$(awk "NR==$i" Database/$dbName/.metadata/$table.meta | cut -d ';' -f1)
     columns+=("--column=$column_name")

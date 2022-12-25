@@ -4,7 +4,7 @@
 . ././helpers/functions.sh
 
 
-column="$(awk "NR>1" Database/$dbName/.metadata/$table.meta | awk -F ';' '{print $1}' | zenity --list --height="250" --width="300" --title="Table $table Columns" --text="Select Your Choosen Column"  --column="Columns" 2>>.errorlog)"
+column="$(awk "NR>0" Database/$dbName/.metadata/$table.meta | awk -F ';' '{print $1}' | zenity --list --height="250" --width="300" --title="Table $table Columns" --text="Select Your Choosen Column"  --column="Columns" 2>>.errorlog)"
 
 
 while true
@@ -37,7 +37,7 @@ do
     columns+=("--column=$column_name")
 done
 
-for irow in `awk -F ';' -v value=$column_value -v colindex=$(($column_index-1)) '{if($colindex==value){print $0}}' Database/$dbName/$table`
+for irow in `awk -F ';' -v value=$column_value -v colindex=$(($column_index)) '{if($colindex==value){print $0}}' Database/$dbName/$table`
 do
     
   for (( i = 1; i<=$no_of_columns; i++ ))
