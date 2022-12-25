@@ -1,15 +1,9 @@
 #! /bin/bash
 val=$(printenv DBMS_INSTALLED)
 
-if [[ $val == 'TRUE' ]]
-then
-    . ./dbms/helpers/functions.sh
-    . ./dbms/progress-bar.sh
-else
-    # using sourcing
-    . ./helpers/functions.sh
-    . ./progress-bar.sh
-fi
+# using sourcing
+. ./helpers/functions.sh
+. ./progress-bar.sh
 
 if [ $# -eq 0 ]
 then

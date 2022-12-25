@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PROJECT_PATH=$HOME/dbms
+PROJECT_PATH=/usr/bin/dbms
 REQUIRED_PKG="unzip"
 
 cd $HOME/Downloads
@@ -12,23 +12,22 @@ function install()
     if [ "" = "$PKG_OK" ]; then
         echo "No $REQUIRED_PKG. Setting up $REQUIRED_PKG."
         sudo apt-get --yes install $REQUIRED_PKG
+        sleep 10               
     fi
+    
     wget https://github.com/aomarabdelaziz/DevOps-bash-project/archive/master.zip
     unzip master.zip
-    mkdir $1
+    sudo mkdir $1
     cd DevOps-bash-project-master
-    cp -a ./ $PROJECT_PATH
-    sudo chmod +x main.sh
+    sudo cp -a ./ $PROJECT_PATH
+    sudo cp dbmsman.1.gz /usr/share/man/man1
+    #sudo chmod +x main.sh
     cd ..
     rm master.zip 
     rm -r DevOps-bash-project-master
-    #cd $HOME
-    echo 'export PATH="$PATH:$HOME/dbms"' >> $HOME/.bashrc
+    echo 'export PATH="$PATH:/usr/bin/dbms"' >> $HOME/.bashrc
     echo "export DBMS_INSTALLED=TRUE" >> $HOME/.bashrc
-
-    
-    
-
+    sudo mandb
 
 }
 
@@ -40,7 +39,8 @@ then
 
     if [[ $REPLY == [yY] ]]
     then
-        rm -r $PROJECT_PATH
+        sudo rm -r $PROJECT_PATH
+        sudo rm /usr/share/man/man1/dbmsman.1.gz
         line_env=$(grep -n 'export DBMS_INSTALLED=TRUE' ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_env" ]
         then
@@ -48,7 +48,7 @@ then
             sed -i "$line_env"d $HOME/.bashrc;
         fi
 
-        line_global_script=$(grep -n 'export PATH="$PATH:$HOME/dbms"' ~/.bashrc | cut -d ':' -f1)
+        line_global_script=$(grep -n 'export PATH="$PATH:/usr/bin/dbms"' ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_global_script" ]
         then
             echo $line_global_script
