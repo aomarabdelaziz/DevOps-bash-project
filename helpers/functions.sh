@@ -134,7 +134,21 @@ function askForDatabaseCred() {
 
               dbUsername=`echo $data | cut -d "," -f 1`
               dbPassword=`echo $data | cut -d "," -f 2`
-              showDBList="true"/DataBase//DataBase//DataBase//DataBase//DataBase/
+              installed=$(printenv DBMS_INSTALLED)
+              if [[ ! -z "$installed" ]]
+              then
+                  dbUser=$(printenv DB_USER)
+                  dbPass=$(printenv PASS)
+
+                  if [[ $dbUsername == $dbUser ]] && [[ $dbPassword == $dbPass ]]
+                  then
+                        showDBList="true"/DataBase//DataBase//DataBase//DataBase//DataBase/
+                  else
+                        zenity --error --width="230" --text="Database field cannot be empty"
+                  fi
+              fi
+             
+
       fi
   
     dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity  --cancel-label="Back" --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"

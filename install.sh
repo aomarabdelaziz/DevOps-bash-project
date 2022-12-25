@@ -2,9 +2,13 @@
 
 PROJECT_PATH=/usr/bin/dbms
 REQUIRED_PKG="unzip"
+Green='\033[1;32m'	        # Green Color Green
 
 function install() 
 {
+    read -p "Please enter database username : " dbUser
+    read -s "Please enter database username : " dbPass
+
     cd $HOME/Downloads
     echo Checking for $REQUIRED_PKG: $PKG_OK
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
@@ -26,11 +30,35 @@ function install()
     rm -r DevOps-bash-project-master
     echo 'export PATH="$PATH:/usr/bin/dbms"' >> $HOME/.bashrc
     echo "export DBMS_INSTALLED=TRUE" >> $HOME/.bashrc
+    echo "export DB_USER=$dbUser" >> $HOME/.bashrc
+    echo "export DB_PASS=$dbPass" >> $HOME/.bashrc
+
     sudo mandb
 
 }
 
+function drawLogo() 
+{
+    
+echo -e "${Green}"
 
+cat << "EOF"
+
+
+
+   ____         __       _____          
+  /  _/__  ___ / /____ _/ / (_)__  ___ _
+ _/ // _ \(_-</ __/ _ `/ / / / _ \/ _ `/
+/___/_//_/___/\__/\_,_/_/_/_/_//_/\_, / 
+                                 /___/  
+
+EOF
+echo -e "${ColorReset}"
+
+}
+
+drawLogo
+sleep 2
 if [ -d "$PROJECT_PATH" ]
 then
     echo -e "Project is already exist, do realy want to override it [y/n]: \c"
@@ -43,15 +71,25 @@ then
         line_env=$(grep -n 'export DBMS_INSTALLED=TRUE' ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_env" ]
         then
-            echo $line_env
             sed -i "$line_env"d $HOME/.bashrc;
         fi
 
         line_global_script=$(grep -n 'export PATH="$PATH:/usr/bin/dbms"' ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_global_script" ]
         then
-            echo $line_global_script
             sed -i "$line_global_script"d $HOME/.bashrc;
+        fi
+
+        line_env_dbpass=$(grep -n "^export DB_USER=" ~/.bashrc | cut -d ':' -f1)
+        if [ ! -z "$line_env_dbuser" ]
+        then
+            sed -i "$line_env_dbuser"d $HOME/.bashrc;
+        fi
+
+        line_env_dbpass=$(grep -n "^export DB_PASS=" ~/.bashrc | cut -d ':' -f1)
+        if [ ! -z "$line_env_dbpass" ]
+        then
+            sed -i "$line_env_dbpass"d $HOME/.bashrc;
         fi
 
 
