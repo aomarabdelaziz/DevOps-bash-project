@@ -24,11 +24,9 @@ sudo chmod +x install.sh
 dbms-run
 ```
 
-## To enable mandb project  :   
+## To rum mandb project  :   
 
 ```console
-sudo cp dbmsman.1.gz /usr/share/man/man1
-sudo mandb
 man dbmsman    
 ```
 
