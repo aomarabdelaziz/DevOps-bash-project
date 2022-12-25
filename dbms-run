@@ -21,7 +21,7 @@ then
 else
     if [[ $1 == "--version" ]]
     then
-        echo 'DBMS Version 1.0, build on 2022'
+        echo 'DBMS Version 1.0, build 2022'
     fi
     if [[ $1 == "--contributors" ]]
     then
@@ -30,6 +30,10 @@ else
     if [[ $1 == "--help" ]]
     then
         echo 'To start the project, please run <dbms-run> command'
+    fi
+     if [[ $1 == "--manual" ]]
+    then
+        echo 'To run the project manual, please run <man dbms> command'
     fi
 fi
 
