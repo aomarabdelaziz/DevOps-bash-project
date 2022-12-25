@@ -25,7 +25,7 @@ Upon user Connect to Specific Database, there will be new Screen with\
 ## To install the project :   
 
 ```console
-wget https://github.com/aomarabdelaziz/DevOps-bash-project/blob/master/install.sh
+wget https://raw.githubusercontent.com/aomarabdelaziz/DevOps-bash-project/master/install.sh
 sudo chmod +x install.sh
 sudo bash install.sh
 ```
