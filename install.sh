@@ -3,10 +3,9 @@
 PROJECT_PATH=/usr/bin/dbms
 REQUIRED_PKG="unzip"
 
-cd $HOME/Downloads
-
 function install() 
 {
+    cd $HOME/Downloads
     echo Checking for $REQUIRED_PKG: $PKG_OK
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $REQUIRED_PKG|grep "install ok installed")
     if [ "" = "$PKG_OK" ]; then
