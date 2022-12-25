@@ -27,6 +27,6 @@ case $choice in
     "Select All By Column From $table"). ./user_operations/dml-operations/select_statments/select_all_from_table_by_column.sh $dbName $table;;
     "Select By Column From $table"). ./user_operations/dml-operations/select_statments/select_by_key_from_table.sh $dbName $table;;
     "Main Menu") mainMenu;;
-    5) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+    "Exit") echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 esac 
