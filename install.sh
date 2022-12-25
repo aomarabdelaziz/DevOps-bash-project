@@ -7,7 +7,8 @@ Green='\033[1;32m'	        # Green Color Green
 function install() 
 {
     read -p "Please enter database username : " dbUser
-    read -s "Please enter database username : " dbPass
+    echo -e "Please enter database password : \c"
+    read -s dbPass
 
     cd $HOME/Downloads
     echo Checking for $REQUIRED_PKG: $PKG_OK
