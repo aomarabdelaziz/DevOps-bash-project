@@ -2,14 +2,6 @@
 
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
-## Project Description   :  
-<p align="center">
-The Project aim to develop DBMS that will enable users to store and retrieve the data from Hard-disk. 
-</p>
-<p align="center">
-<img src="diagram.png" >  
-</p>
-
 ## To install the project :   
 
 ```console
