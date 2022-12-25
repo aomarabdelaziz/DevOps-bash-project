@@ -15,7 +15,7 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ```console
 wget https://github.com/aomarabdelaziz/DevOps-bash-project/blob/master/install.sh
 sudo chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
 
 ## To run this project  :   
