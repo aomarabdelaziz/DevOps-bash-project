@@ -23,6 +23,6 @@
 case $choice in 
     "Update Table [$table]"). ./user_operations/dml-operations/update_statments/update_table_by_column.sh $dbName $table;;
     "Main Menu") mainMenu;;
-    3) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+    ) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 esac 

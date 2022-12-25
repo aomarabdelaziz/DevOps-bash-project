@@ -206,7 +206,7 @@ function DatabaseMenu(){
             "Create Table"). ./user_operations/ddl-operations/create_table.sh $1;;
             "List Tables" ). ./user_operations/ddl-operations/list_tables.sh $1;;
             "Main Menu") mainMenu;;
-            4) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+            "Exit") echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
             *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
     esac
 }
@@ -239,7 +239,7 @@ case $choice in
     "Delete From Table [$2]"). ./user_operations/dml-operations/delete_menu.sh $1 $2;;
     "Update Table [$2]"). ./user_operations/dml-operations/update_menu.sh $1 $2;;
     "Main Menu") mainMenu;;
-    7) echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
+    "Exit") echo -e "${Green}Exited..${ColorReset}";exit;; #exit from database
     *) echo -e "${RED}invalid choice, try again ... you must choose only from the above list${ColorReset}";mainMenu #Call it again
 esac 
 

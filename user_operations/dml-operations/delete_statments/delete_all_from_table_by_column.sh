@@ -18,7 +18,32 @@ do
     --width="200" \
     --entry-text "")
 
-    break
+     if [[ -z "$column_value" ]]
+     then 
+        zenity --error --width="300" --text="Column [$column] field cannot be empty"
+     else
+       
+         if [[ $column_type == "Integer" ]]
+         then
+             if [[ $column_value =~ ^[0-9]+$ ]]
+             then
+                break
+             else
+                zenity --error --width="300" --text="Column [$column] is accepts integers only"
+             fi
+         fi
+
+         if [[ $column_type == "String" ]]
+         then
+            if [[ $column_value =~  ^[a-zA-Z]+[a-zA-Z0-9]*$ ]]
+            then
+                break
+            else
+                zenity --error --width="300" --text="Column [$column] is accepts string only"
+            fi
+         fi
+     fi
+   
 done
 
 

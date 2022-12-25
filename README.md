@@ -16,6 +16,14 @@ The Project aim to develop DBMS that will enable users to store and retrieve the
 ./main.sh
 ```
 
+## To enable mandb project  :   
+
+```console
+sudo cp dbmsman.1.gz /usr/share/man/man1
+sudo mandb
+man dbmsman    
+```
+
 ## Contributors
 <table>
    <tr>

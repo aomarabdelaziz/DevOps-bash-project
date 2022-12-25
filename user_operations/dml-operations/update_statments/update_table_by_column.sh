@@ -6,6 +6,10 @@
 
 column="$(awk "NR>0" Database/$dbName/.metadata/$table.meta | awk -F ';' '{print $1}' | zenity --list --height="250" --width="300" --title="Table $table Columns" --text="Select Your Choosen Column"  --column="Columns" 2>>.errorlog)"
 
+column_index=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f1)
+
+column_type=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f2 | cut -d ';' -f2)
+
 
 while true
 do
@@ -15,12 +19,33 @@ do
     --width="200" \
     --entry-text "")
 
-    if [[ -z "$old_column_value" ]]
-    then
-       zenity --error --width="300" --text="Column [$column] field cannot be empty"
-    else
-        break
-    fi
+
+        if [[ -z "$old_column_value" ]]
+        then 
+            zenity --error --width="300" --text="Column [$column] field cannot be empty"
+        else
+        
+            if [[ $column_type == "Integer" ]]
+            then
+                if [[ $old_column_value =~ ^[0-9]+$ ]]
+                then
+                    break
+                else
+                    zenity --error --width="300" --text="Column [$column] is accepts integers only"
+                fi
+            fi
+
+            if [[ $old_column_value == "String" ]]
+            then
+                if [[ $old_column_value =~ ^[a-zA-Z]+[a-zA-Z0-9]*$ ]]
+                then
+                    break
+                else
+                    zenity --error --width="300" --text="Column [$column] is accepts string only"
+                fi
+            fi
+        fi
+    
 done
 
 while true
@@ -31,16 +56,32 @@ do
     --width="200" \
     --entry-text "")
 
-    if [[ -z "$new_column_value" ]]
-    then
-       zenity --error --width="300" --text="Column [$column] field cannot be empty"
-    else
-        break
-    fi
+        if [[ -z "$new_column_value" ]]
+        then 
+            zenity --error --width="300" --text="Column [$column] field cannot be empty"
+        else
+        
+            if [[ $column_type == "Integer" ]]
+            then
+                if [[ $new_column_value =~ ^[0-9]+$ ]]
+                then
+                    break
+                else
+                    zenity --error --width="300" --text="Column [$column] is accepts integers only"
+                fi
+            fi
+
+            if [[ $column_type == "String" ]]
+            then
+                if [[ $new_column_value =~ ^[a-zA-Z]+[a-zA-Z0-9]*$ ]]
+                then
+                    break
+                else
+                    zenity --error --width="300" --text="Column [$column] is accepts string only"
+                fi
+            fi
+        fi
 done
-
-column_index=$(grep -n "$column" Database/$dbName/.metadata/$table.meta | cut -d ':' -f1)
-
 
 
 line=$(awk -F ";" -v value=$old_column_value -v colindex=$(($column_index)) '{if($colindex==value) print NR}'  Database/$dbName/$table);
