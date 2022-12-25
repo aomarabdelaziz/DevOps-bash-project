@@ -24,7 +24,7 @@ function install()
     sudo mkdir $1
     cd DevOps-bash-project-master
     sudo cp -a ./ $PROJECT_PATH
-    sudo cp dbmsman.1.gz /usr/share/man/man1
+    sudo cp dbms.1.gz /usr/share/man/man1
     #sudo chmod +x main.sh
     cd ..
     rm master.zip 
@@ -68,7 +68,7 @@ then
     if [[ $REPLY == [yY] ]]
     then
         sudo rm -r $PROJECT_PATH
-        sudo rm /usr/share/man/man1/dbmsman.1.gz
+        sudo rm /usr/share/man/man1/dbms.1.gz
         line_env=$(grep -n 'export DBMS_INSTALLED=TRUE' ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_env" ]
         then
@@ -81,7 +81,7 @@ then
             sed -i "$line_global_script"d $HOME/.bashrc;
         fi
 
-        line_env_dbpass=$(grep -n "^export DB_USER=" ~/.bashrc | cut -d ':' -f1)
+        line_env_dbuser=$(grep -n "^export DB_USER=" ~/.bashrc | cut -d ':' -f1)
         if [ ! -z "$line_env_dbuser" ]
         then
             sed -i "$line_env_dbuser"d $HOME/.bashrc;
