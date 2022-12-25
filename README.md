@@ -2,6 +2,26 @@
 
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
+
+# DESCRIPTION
+**DBMS** is a simply Bash scrip aim to develop DBMS, that will enable users to store and retrieve the data from Hard-disk.
+
+# Features
+The Application will be CLI Menu based app, that will provide to user this Menu items:\
+**- Create Database**\
+**- List   Database**\
+**- Connect To Database**\
+**- Drop a Database**\
+
+Upon user Connect to Specific Database, there will be new Screen with\
+**- Create Table**\
+**- List   Tables**\
+**- Drop   Table**\
+**- Insert into table**\
+**- select from table**\
+**- delete from table**\
+**- Update table**\
+
 ## To install the project :   
 
 ```console
