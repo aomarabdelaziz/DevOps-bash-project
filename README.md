@@ -18,7 +18,7 @@ sudo chmod +x install.sh
 sudo bash install.sh
 ```
 
-## To run this project  :   
+## To run the project  :   
 
 ```console
 dbms-run
