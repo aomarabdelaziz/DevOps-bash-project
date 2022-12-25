@@ -114,60 +114,53 @@ else
     mainMenu
 fi
 }
-function askForDatabaseCred() {
-  
-  showDBList=''
-  while true
-  do
-      if [ -z $showDBList ]
-      then
-        data=$(zenity --forms --title="Database login" \
-        --text="Enter your database creds." \
+function askForDatabaseCred() 
+{
+    while true
+    do
+       data=$(zenity --forms --title="Database login" \
+        --text="Enter your database credentials." \
         --separator="," \
         --add-entry="Database name" \
         --add-password="Database password")
-          exitCode=$?
-          if [[ $exitCode == 1 ]]
-          then
-              break
-          fi
 
-              dbUsername=`echo $data | cut -d "," -f 1`
-              dbPassword=`echo $data | cut -d "," -f 2`
-              installed=$(printenv DBMS_INSTALLED)
-              if [[ ! -z "$installed" ]]
-              then
-                  dbUser=$(printenv DB_USER)
-                  dbPass=$(printenv PASS)
-
-                  if [[ $dbUsername == $dbUser ]] && [[ $dbPassword == $dbPass ]]
-                  then
-                        showDBList="true"/DataBase//DataBase//DataBase//DataBase//DataBase/
-                  else
-                        zenity --error --width="230" --text="Database field cannot be empty"
-                  fi
-              fi
-             
-
-      fi
-  
-    dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity  --cancel-label="Back" --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
-    lastOp=$?
-     if [[ $lastOp == 1 ]]
-     then
-        mainMenu
-     fi 
-    #dbName=`echo $data | cut -d "," -f 3`
-    if [[ -z "$dbName" ]]; then
-      zenity --error --width="230" --text="Database field cannot be empty"
-   else
-      if isDatabaseExist $dbName
-        then
+         dbUsername=`echo $data | cut -d "," -f 1`
+         dbPassword=`echo $data | cut -d "," -f 2`
+         installed=$(printenv DBMS_INSTALLED)
+         dbUser=$(printenv DB_USER)
+         dbPass=$(printenv DB_PASS)
+         if [[ -z "$installed" ]]
+         then
            break
+         else
+          if [[ $dbUsername == $dbUser ]] && [[ $dbPassword == $dbPass ]]
+            then
+                 break
+            else
+                 zenity --error --width="230" --text="Database credentials is wrong"
+              fi
+         fi
+    done
+
+  while true
+  do
+        dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity  --cancel-label="Back" --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+        lastOp=$?
+        if [[ $lastOp == 1 ]]
+        then
+            mainMenu
+        fi 
+        #dbName=`echo $data | cut -d "," -f 3`
+        if [[ -z "$dbName" ]]; then
+          zenity --error --width="230" --text="Database field cannot be empty"
       else
-           zenity --error --width="200" --text="Database [$dbName] is not exist"   
-        fi
-    fi  
+          if isDatabaseExist $dbName
+            then
+              break
+          else
+              zenity --error --width="200" --text="Database [$dbName] is not exist"   
+            fi
+        fi  
   done
 
 }
