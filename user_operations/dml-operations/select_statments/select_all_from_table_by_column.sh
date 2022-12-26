@@ -14,6 +14,7 @@ while true
 do
     column_value=$(zenity --entry \
     --title="Enter The $column Value" \
+    --cancel-label="Back" \
     --text="SELECT * FROM $table WHERE $column = " \
     --width="200" \
     --entry-text "")

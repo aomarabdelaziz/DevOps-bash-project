@@ -119,6 +119,7 @@ function askForDatabaseCred()
     while true
     do
        data=$(zenity --forms --title="Database login" \
+        --cancel-label="Exit" \
         --text="Enter your database credentials." \
         --separator="," \
         --add-entry="Database name" \
@@ -172,8 +173,18 @@ function Drop(){
         zenity --error --width="200" --text="No Database Found"
         mainMenu
      fi
+
       # setOutputColorCyan
-      dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+      while true;
+      do
+      dbName="$(ls -l Database | grep "^d" | awk -F ' ' '{print $9}' | zenity --list --height="250" --width="300" --cancel-label="Back"  --title="Database List" --text="Select your database"  --column="Database name" 2>>.errorlog)"
+      if [[ -z $dbName ]];
+      then
+        zenity --error --width="200" --text="Database Doesnot exist"
+      else
+        break
+      fi
+      done
       # resetColor
       # cd Database
       # echo -e "${Blue}Select the Database you want to remove: \c"
@@ -260,6 +271,7 @@ while true
 do
   tablename=$(zenity --entry \
     --title="Add new table" \
+    --cancel-label="Back" \
     --text="Enter table name:" \
     --entry-text "ITI-table")
 
@@ -319,6 +331,7 @@ function createColumns(){
     do
       column=$(zenity --entry \
       --title="Enter the number of columns" \
+      --cancel-label="Back" \
       --text="Enter the number of columns:" \
       --entry-text "number-column")
 
@@ -331,6 +344,7 @@ function createColumns(){
         do
         tablename=$(zenity --entry \
         --title="Enter column name" \
+        --cancel-label="Back" \
         --text="Enter column name:" \
         --entry-text "Column-name")
 
@@ -389,6 +403,7 @@ function insert(){
       insert=$(zenity --entry \
           --height="250"\
           --width="350"\
+          --cancel-label="Back" \
           --title="Enter $column" \
           --text="Insert here:" \
           --entry-text "Your-Value")
