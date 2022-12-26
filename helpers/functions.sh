@@ -369,6 +369,7 @@ function createColumns(){
 
 
 function insert(){
+  column="$(awk "NR>0" Database/$1/.metadata/$2.meta | awk -F ';' '{print $1}')"
   var='!@#$%^&*()-_'
   declare -a arr=();
   declare -i s=0
@@ -386,7 +387,9 @@ function insert(){
     while true;
     do  
       insert=$(zenity --entry \
-          --title="Enter value" \
+          --height="250"\
+          --width="350"\
+          --title="Enter $column" \
           --text="Insert here:" \
           --entry-text "Your-Value")
         
