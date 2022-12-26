@@ -15,16 +15,15 @@ while true
 do
     old_column_value=$(zenity --entry \
     --title="Enter The key $column Value" \
-    --text="Update $table set $column =  " \
+    --text="Please enter the value you want to change." \
     --width="200" \
     --entry-text "")
-
 
         if [[ -z "$old_column_value" ]]
         then 
             zenity --error --width="300" --text="Column [$column] field cannot be empty"
         else
-        
+            echo 'not empty'
             if [[ $column_type == "Integer" ]]
             then
                 if [[ $old_column_value =~ ^[0-9]+$ ]]
@@ -35,10 +34,12 @@ do
                 fi
             fi
 
-            if [[ $old_column_value == "String" ]]
+            if [[ $column_type == "String" ]]
             then
+                echo 'string'
                 if [[ $old_column_value =~ ^[a-zA-Z]+[a-zA-Z0-9]*$ ]]
                 then
+                    echo 'Valid'
                     break
                 else
                     zenity --error --width="300" --text="Column [$column] is accepts string only"
