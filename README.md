@@ -7,13 +7,13 @@
 **DBMS** is a simply Bash script aim to develop DBMS, that will enable users to store and retrieve the data from Hard-disk.
 
 # Features
-The Application will be CLI Menu based app, that will provide to user this Menu items:\
+The Application will be GUI Menu based app, that will provide to user this Menu items:\
 **- Create Database**\
 **- List   Database**\
 **- Connect To Database**\
 **- Drop a Database**\
 
-Upon user Connect to Specific Database, there will be new Screen with\
+Upon user Connect to Specific Database, there will be new GUI Screen with\
 **- Create Table**\
 **- List   Tables**\
 **- Drop   Table**\
