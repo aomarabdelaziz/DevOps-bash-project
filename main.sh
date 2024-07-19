@@ -1,6 +1,6 @@
 #! /bin/bash
 #val=$(printenv DBMS_INSTALLED)
-
+#adding new comment
 # using sourcing
 . ./helpers/functions.sh
 . ./progress-bar.sh
